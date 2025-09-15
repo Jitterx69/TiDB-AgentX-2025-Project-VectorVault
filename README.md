@@ -4,9 +4,7 @@
 
 </div>
 
-AI‑powered incident intelligence with semantic vector search.  
-Frontend: React + TypeScript + Vite · Backend: Node/Express · Database: TiDB Serverless (optional)  
-Includes a zero‑dependency Mock Mode for instant local testing.
+VectorVault is an AI-powered Security Operations Center (SOC) platform designed to proactively defend against cyber threats. It's a next-generation security solution that combines the predictive power of a Large Language Model (LLM) with the A.S.T.R.A. (Advanced Security & Token-Based Rotating Authentication) zero-trust framework. This synergy transforms cybersecurity from a reactive defense into a strategic, predictive advantage.
 
 ---
 
@@ -31,6 +29,7 @@ Includes a zero‑dependency Mock Mode for instant local testing.
 ## Features
 - 🔍 Vector similarity search across historical incidents
 - 🧠 JS cosine fallback when DB vector functions are unavailable
+- 🤖 Tailored LLM Model to detect, analyze, and recommend actions
 - 🗃️ Automatic table/index creation (TiDB Serverless)
 - ⚙️ Database Management UI: test connection, refresh, seed
 - 📊 Search stats (total incidents, indexed vectors, etc.)
@@ -42,24 +41,80 @@ Includes a zero‑dependency Mock Mode for instant local testing.
 ## Architecture
 
 ```
-┌───────────┐     REST      ┌──────────────┐     SQL / Vector      ┌───────────────┐
+┌───────────┐     REST      ┌──────────────┐     SQL / Vector      ┌────────────────┐
 │  React    │  ───────────▶ │  Express API │  ───────────────────▶ │ TiDB Serverless│
 │ (Vite)    │ ◀───────────  │ (server.cjs) │  ◀─────────────────── │ (optional)     │
-└───────────┘  JSON / HTTP  └──────────────┘  Fallback: JS Cosine  └───────────────┘
+└───────────┘  JSON / HTTP  └──────────────┘  Fallback: JS Cosine  └────────────────┘
 ```
 
 ---
 
-## Tech Stack
-- Frontend: React 18, TypeScript, Vite, shadcn/ui, Tailwind
-- Backend: Node.js (Express)
-- Database: TiDB Serverless (MySQL‑compatible, vector index optional)
-- Fallback: In‑process cosine similarity (no external dependencies)
+## Tech Stack & Dependencies
+### Frontend 
+- **React 18 :** Main UI framework
+- **TypeScript :** Type-safe JavaScript
+- **Vite :** Build tools & Development Server
+- **Tailwind CSS :** Utility-first CSS framework
+- **shadcn/ui :** Component library built on Radix UI 
+- **Radix UI :** Headless UI Primitives
+- **Lucide React :** Icon Library
+- **React Hooks :** useState, useEffect, useCallback
+- **Custom Hooks :** useTiDBConnection, useVectorSearch, useSearchStats
+- **React Router DOM :** client-side routing
+
+### Backend 
+- **Node.js :** Javascript runtime
+- **Express.js :** Node.js web framework
+  
+### Database
+- **TiDB Serverless :** MySQL-compatible distributed database
+- **mysql2 :** MySQL driver for Node.js
+- **Vector Search :** Native vector similarity search capabilities
+
+### API Communication
+- **RESTful APIs :** HTTP endpoints for data operations
+- **CORS :** Cross-origin resource sharing
+- **Fetch API :** Frontend HTTP client
+
+### Key Dependencies
+- Frontend (JSON)
+
+```bash
+{
+ "react": "^18.2.0",
+ "react-dom": "^18.2.0",
+ "react-router-dom": "^6.8.0",
+ "typescript": "^5.0.0",
+ "tailwindcss": "^3.3.0",
+ "@radix-ui/react-*": "various",
+ "lucide-react": "^0.263.0"
+}
+```
+- Backend (JSON)
+
+```bash
+{
+ "express": "^5.1.0",
+ "mysql2": "^3.6.0",
+ "cors": "^2.8.5",
+ "dotenv": "^17.2.2"
+}
+```
+- Development (JSON)
+
+```bash
+{
+ "vite": "^5.4.0",
+ "eslint": "^8.0.0",
+ "@types/express": "^4.17.0",
+ "@types/cors": "^2.8.0",
+ "concurrently": "^8.0.0"
+}
+```
 
 ---
 
 ## Quickstart
-
 ```bash
 git clone https://github.com/<your-username>/<your-repo>.git
 cd incident-guard-ai
@@ -78,9 +133,7 @@ npm run dev:full
 ---
 
 ## Environment
-
 Create `.env` (or copy `.env.example`):
-
 ```env
 # TiDB Serverless (leave placeholders for Mock Mode)
 VITE_TIDB_HOST=your-tidb-host.tidbcloud.com
