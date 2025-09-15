@@ -108,4 +108,4 @@ Once connected successfully:
 3. Test advanced filtering options
 4. Monitor search analytics in the dashboard
 
-Your Incident Guard AI application is now fully connected to TiDB Serverless! 🎉
+Your VectorVault application is now fully connected to TiDB Serverless! 🎉
