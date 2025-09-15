@@ -532,3 +532,4 @@ For support and questions:
 ---
 
 **Note**: This application requires TiDB Serverless and OpenAI API access. Please ensure you have the necessary accounts and API keys before running the application.
+# TiDB-AgentX-2025-Project-VectorVault
