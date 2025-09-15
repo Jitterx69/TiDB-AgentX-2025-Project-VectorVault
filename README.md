@@ -323,7 +323,6 @@ npm run preview    # Preview production build
    - Use appropriate filters
 
 ### Debug Mode
-
 Enable debug logging by setting `VITE_APP_ENV=development` in your `.env` file.
 
 
